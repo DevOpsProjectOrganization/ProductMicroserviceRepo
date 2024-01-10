@@ -17,7 +17,7 @@ namespace ProductsMicroService.Services
 
         public IReadOnlyCollection<Product> GetProducts()
         {
-            throw new NotImplementedException();
+            return this._products;
         }
 
         private IReadOnlyCollection<Product> InitializeProductsArray()
