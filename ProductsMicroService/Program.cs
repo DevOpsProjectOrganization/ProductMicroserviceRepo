@@ -7,8 +7,19 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddScoped<IRepository<Product>, ProductRepository>();
+builder.Services.AddCors(c =>
+{
+    c.AddPolicy("AllowOrigin", options =>
+    {
+        options.AllowAnyOrigin()
+        .AllowAnyHeader()
+        .AllowAnyMethod();
+    });
+});
+
 
 var app = builder.Build();
+app.UseCors("AllowOrigin");
 
 // Configure the HTTP request pipeline.
 
