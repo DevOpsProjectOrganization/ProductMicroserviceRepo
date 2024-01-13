@@ -1,0 +1,8 @@
+services:
+  productsMicroService:
+    image: saltntoona/productsmicroservice
+    build: 
+      dockerfile: ./Dockerfile
+      context: .
+    ports:
+      - "50217:50217"
