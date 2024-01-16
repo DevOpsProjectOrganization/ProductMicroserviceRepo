@@ -25,7 +25,21 @@ jobs:
       - name: Test for vulnerabilities with Snyk
         run: snyk code test
 
-  
+  sonarcloud-security-analysis:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+
+      - name: SonarCloud scan
+        uses: SonarSource/sonarcloud-github-action@master
+        with:
+          fetch-depth: 0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          
   docker-configuration:
     runs-on: ubuntu-latest
 
