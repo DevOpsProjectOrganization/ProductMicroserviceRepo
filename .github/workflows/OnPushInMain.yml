@@ -8,6 +8,24 @@ on:
     branches:
       - main
 jobs:
+  snyk-security-analysis:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout the code
+        uses: actions/checkout@v2
+
+      - name: Install Snyk CLI
+        run: npm install -g snyk
+
+      - name: Authenticate with Snyk  
+        run: snyk config set api=${{secrets.SNYK_TOKEN}}
+
+      - name: Test for vulnerabilities with Snyk
+        run: snyk code test
+
+  
   docker-configuration:
     runs-on: ubuntu-latest
 
